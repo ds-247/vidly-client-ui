@@ -1,17 +1,19 @@
 import React from "react";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-
-import MoviePoster from "../assets/moviepageposter.jpg";
+import { useLocation } from "react-router-dom";
 import AddIcon from "@mui/icons-material/Add";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import { Button } from "@mui/material";
 import "../componentStyle/moviePage.css";
 
 function MoviePage() {
+  const location = useLocation();
+  const { movieData } = location.state;
+
   return (
     <div className="movie-page-container">
       <div className="img-wrapper">
-        <img src={MoviePoster} alt="Movie-Poster" />
+        <img src={movieData.movieImage} alt="Movie-Poster" />
       </div>
       <div className="options">
         <div className="buttons">

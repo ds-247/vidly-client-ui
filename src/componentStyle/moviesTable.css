@@ -3,17 +3,17 @@
   background-color: white;
 }
 
-.movies-table-container th, .movies-table-container td{
-    text-align: center;
+.movies-table-container th,
+.movies-table-container td {
+  text-align: center;
 }
 
-.movies-table-container tbody tr :first-child {
-  width: 500px;
-  height: 219px;
+.movie-table-row a{
+  text-align: center;
 }
 
-.movies-table-container tr :first-child div {
-  width: 75%;
+.movie-table-img-wrapper {
+  width: 55%;
   margin: auto;
   height: 95%;
   border-radius: 20px;
@@ -21,7 +21,7 @@
   overflow: hidden;
 }
 
-.movies-table-container tr :first-child div img{
+.movie-table-img-wrapper img {
   height: 100%;
   width: 100%;
   object-fit: cover;

@@ -49,7 +49,7 @@ function App() {
           <Route exact path="/movies">
             <MoviesTable moviesData={movieData} />
           </Route>
-          <Route exact path="/movie">
+          <Route exact path="/movie/:id">
             <MoviePage />
           </Route>
           <Route exact path="/login">

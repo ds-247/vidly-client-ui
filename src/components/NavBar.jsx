@@ -23,7 +23,6 @@ function NavBar() {
 
   const pages = [
     { label: "Home", to: "/home" },
-    { label: "Movie Page", to: "/movie" },
     { label: "All Movies", to: "/movies" },
     { label: "Orders", to: "/orders" },
     { label: "Login", to: "/login", condition: !user },

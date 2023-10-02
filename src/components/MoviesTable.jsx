@@ -1,9 +1,7 @@
 import React from "react";
-// import { TableHeader, TableBody } from "./moviesTableUtil";
 import TableHeader from "./moviesTableUtil/TableHeader";
 import MTableBody from "./moviesTableUtil/MTableBody";
 import { Table, Paper } from "@mui/material";
-
 import "../componentStyle/moviesTable.css";
 
 const MoviesTable = ({moviesData}) => {

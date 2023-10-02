@@ -3,13 +3,13 @@ import { TableHead, TableRow, TableCell } from "@mui/material";
 
 const TableHeader = () => {
   return (
-      <TableHead>
-        <TableRow>
-          <TableCell>#</TableCell>
-          <TableCell>Title</TableCell>
-          <TableCell>Rate</TableCell>
-        </TableRow>
-      </TableHead>
+    <TableHead>
+      <TableRow>
+        <TableCell sx={{ width: "50%" }}>#</TableCell>
+        <TableCell sx={{ width: "25%" }}>Title</TableCell>
+        <TableCell sx={{ width: "25%" }}>Rate</TableCell>
+      </TableRow>
+    </TableHead>
   );
 };
 

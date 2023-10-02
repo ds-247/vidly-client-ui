@@ -8,3 +8,7 @@ form {
   background-color: white;
   height: 500px;
 }
+
+#root a {
+  text-decoration: none;
+}
