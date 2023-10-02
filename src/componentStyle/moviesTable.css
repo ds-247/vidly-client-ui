@@ -1,0 +1,28 @@
+.movies-table-container {
+  padding: 20px;
+  background-color: white;
+}
+
+.movies-table-container th, .movies-table-container td{
+    text-align: center;
+}
+
+.movies-table-container tbody tr :first-child {
+  width: 500px;
+  height: 219px;
+}
+
+.movies-table-container tr :first-child div {
+  width: 75%;
+  margin: auto;
+  height: 95%;
+  border-radius: 20px;
+  box-shadow: 0 0 14px black;
+  overflow: hidden;
+}
+
+.movies-table-container tr :first-child div img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}

@@ -1,0 +1,11 @@
+.order-table-container {
+  padding: 55px;
+  background-color: whitesmoke;
+  box-shadow: 0 0 20px white;
+  margin: 10px 0;
+  width: 100%;
+}
+
+.order-table-container :first-child {
+  margin: auto;
+}

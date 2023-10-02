@@ -1,0 +1,59 @@
+:root {
+  --movie-page-gradient-1: rgb(21 21 21);
+  --movie-page-gradient-2: rgb(130 126 126 / 0%);
+}
+
+.movie-page-container {
+  height: 500px;
+  width: 100%;
+  background-color: white;
+}
+
+.movie-page-container .img-wrapper {
+  height: 500px;
+  overflow: hidden;
+}
+
+.movie-page-container .img-wrapper img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.movie-page-container .options {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  bottom: 158px;
+  box-shadow: 0px 0px 20px 5px black;
+  background: linear-gradient(
+    0deg,
+    var(--movie-page-gradient-1) 40%,
+    var(--movie-page-gradient-2) 135%
+  );
+}
+
+.movie-page-container .buttons {
+  padding-top: 15px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 355px;
+  justify-content: center;
+}
+
+.movie-page-container button {
+  background-color: #fdfdfd;
+  color: black;
+  font-weight: 600;
+}
+
+.movie-page-container .movie-discription {
+  width: 68%;
+  margin: 0 auto;
+  font-size: 19px;
+  color: #939393;
+  font-weight: 500;
+  margin-top: 16px;
+}

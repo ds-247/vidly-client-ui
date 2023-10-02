@@ -1,0 +1,18 @@
+.title-text {
+  color: #7c93b8;
+  font-size: 40px;
+  margin: 70px 30px;
+  padding: 20px;
+  border-radius: 35px;
+  background-color: #0e0f12;
+  width: 47%;
+  box-shadow: 0 0 20px #202228;
+}
+
+.title-text:hover {
+  box-shadow: 0 0 20px #2e313d;
+}
+
+.title-anchor {
+  text-decoration: none;
+}

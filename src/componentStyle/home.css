@@ -1,0 +1,41 @@
+.home-container {
+  margin-top: 10px;
+  padding: 20px 10px;
+  background-color: #0b0c0e;
+}
+
+.home-container .carousel-container {
+  height: 550px;
+  overflow: hidden;
+}
+
+.home-container .carousel-item img {
+  height: 100%;
+  width: auto;
+  object-fit: cover;
+}
+
+.home-container .carousel-item,
+.home-container .carousel-inner,
+.home-container .carousel {
+  height: 95%;
+}
+
+.sub-banner {
+  color: white;
+  font-size: 23px;
+  text-align: center;
+  background-color: black;
+  margin-top: 50px;
+  padding: 48px 0 32px 0;
+}
+
+.sub-banner button {
+  color: #ffffff;
+  background-color: #df2323;
+  font-weight: 600;
+}
+
+.sub-banner button:hover {
+  background-color: red;
+}

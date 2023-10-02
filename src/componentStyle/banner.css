@@ -1,0 +1,58 @@
+@import url("https://fonts.googleapis.com/css2?family=AR+One+Sans:wght@600&display=swap");
+
+:root {
+--banner-gradient-1: rgb(1 1 1 / 84%);
+--banner-gradient-2: rgb(130 126 126 / 32%);
+}
+
+.banner-container {
+  margin: 10px 0;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("../assets/banner-poster.jpg");
+  height: 600px;
+  background-size: contain;
+  box-shadow: 0 0 20px #ffffff;
+  display: flex;
+  align-items: flex-end;
+}
+
+.banner-text {
+  width: 50%;
+  margin-left: 65px;
+  margin-bottom: 85px;
+  color: white;
+  box-shadow: 0 0 20px #ffffff73;
+  padding: 15px;
+  border-radius: 14px;
+  background: linear-gradient(
+    0deg,
+    var(--banner-gradient-1) 40%,
+    var(--banner-gradient-2) 135%
+  );
+}
+
+.banner-text .main-heading h1 {
+  font-family: "AR One Sans", sans-serif;
+  font-size: 33px;
+  color: #dbdbdb;
+}
+
+.banner-text .banner-discription {
+  margin-top: 16px;
+}
+
+.banner-text .banner-discription h3 {
+  font-size: 16px;
+  color: #868282;
+}
+
+.banner-button {
+  margin-top: 40px;
+  margin-left: 25px;
+}
+
+.banner-button button {
+  background-color: #e7e7e7;
+  color: black;
+  font-weight: 900;
+}

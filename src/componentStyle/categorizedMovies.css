@@ -1,0 +1,35 @@
+.slider-container {
+  margin: 10px 20px;
+}
+
+.slider-flex :first-child {
+  align-items: center;
+}
+
+.slider-item {
+  width: 100%;
+}
+
+.react-multiple-carousel__arrow--right {
+  right: 1px;
+}
+
+.react-multiple-carousel__arrow--left {
+  left: 1px;
+}
+
+.movie-category {
+  margin: 50px auto;
+}
+
+.movie-category h3 {
+  color: white;
+  margin-left: 50px;
+  font-size: 22px;
+}
+
+.catMovie-divider {
+  border-top: 1px solid rgb(67 56 56);
+  width: 90%;
+  margin: 20px auto;
+}

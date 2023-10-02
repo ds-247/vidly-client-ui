@@ -1,0 +1,10 @@
+header:first-child {
+  background-color: #1b254c;
+}
+
+.custom_icon {
+  height: 48px;
+  width: 48px;
+  margin-right: 10px;
+  border-radius: 47px;
+}
