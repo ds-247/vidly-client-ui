@@ -5,6 +5,8 @@ import { Button } from "@mui/material";
 import Input from "./Input";
 // import auth from "../services/authService";
 // import { Redirect } from "react-router-dom";
+import "../componentStyle/form.css";
+import SmoothScrollingToTop from "./moviesTableUtil/SmoothScrollingToTop";
 
 function Login() {
   const [account, setAccount] = useState({ username: "", password: "" });
@@ -14,6 +16,8 @@ function Login() {
     usernameErrorMessage: "",
     passwordErrorMessage: "",
   });
+
+  SmoothScrollingToTop();
 
   const schema = {
     username: Joi.string().email().required().label("Username"),
@@ -90,35 +94,43 @@ function Login() {
       {/* {auth.getCurrentUser() ? (
         <Redirect to="/" />
       ) : ( */}
-      <form autoComplete="off" onSubmit={handleSubmit}>
-        <h1>Login Form</h1>
-        <Box>
-          <Input
-            name="username"
-            label="UserName"
-            onChange={handleInputChange}
-            value={account.username}
-            error={error.usernameError}
-            errorMessage={error.usernameErrorMessage}
-          />
-          <Input
-            name="password"
-            label="Password"
-            type="password"
-            onChange={handleInputChange}
-            value={account.password}
-            error={error.passwordError}
-            errorMessage={error.passwordErrorMessage}
-          />
-        </Box>
-        <Button
-          type="submit"
-          variant="contained"
-          disabled={validate() !== null}
-        >
-          LogIn
-        </Button>
-      </form>
+      <div className="form-background-image">
+        <div className="form-container">
+          <form
+            className="form-content"
+            autoComplete="off"
+            onSubmit={handleSubmit}
+          >
+            <h1>Login Form</h1>
+            <Box>
+              <Input
+                name="username"
+                label="UserName"
+                onChange={handleInputChange}
+                value={account.username}
+                error={error.usernameError}
+                errorMessage={error.usernameErrorMessage}
+              />
+              <Input
+                name="password"
+                label="Password"
+                type="password"
+                onChange={handleInputChange}
+                value={account.password}
+                error={error.passwordError}
+                errorMessage={error.passwordErrorMessage}
+              />
+            </Box>
+            <Button
+              type="submit"
+              variant="contained"
+              disabled={validate() !== null}
+            >
+              LogIn
+            </Button>
+          </form>
+        </div>
+      </div>
       {/* )} */}
     </>
   );

@@ -1,8 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=AR+One+Sans:wght@600&display=swap");
 
 :root {
---banner-gradient-1: rgb(1 1 1 / 84%);
---banner-gradient-2: rgb(130 126 126 / 32%);
+  --banner-gradient-1: rgb(1 1 1 / 84%);
+  --banner-gradient-2: rgb(130 126 126 / 32%);
 }
 
 .banner-container {

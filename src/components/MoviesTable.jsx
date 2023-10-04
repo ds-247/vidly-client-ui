@@ -3,8 +3,10 @@ import TableHeader from "./moviesTableUtil/TableHeader";
 import MTableBody from "./moviesTableUtil/MTableBody";
 import { Table, Paper } from "@mui/material";
 import "../componentStyle/moviesTable.css";
+import SmoothScrollingToTop from "./moviesTableUtil/SmoothScrollingToTop";
 
-const MoviesTable = ({moviesData}) => {
+const MoviesTable = ({ moviesData }) => {
+  SmoothScrollingToTop();
   return (
     <div className="movies-table-container">
       <Paper>

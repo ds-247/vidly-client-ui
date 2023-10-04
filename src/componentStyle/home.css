@@ -30,12 +30,12 @@
   padding: 48px 0 32px 0;
 }
 
-.sub-banner button {
+.sub-banner a {
   color: #ffffff;
   background-color: #df2323;
   font-weight: 600;
 }
 
-.sub-banner button:hover {
+.sub-banner a:hover {
   background-color: red;
 }

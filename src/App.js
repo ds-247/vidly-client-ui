@@ -8,32 +8,33 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Footer from "./components/Footer";
 import { getMovies } from "./services/movieService";
-import { getGenres } from './services/genreService';
+import { getGenres } from "./services/genreService";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
+import auth from "./services/authService";
 
 const homePaths = ["/", "/home"];
 
 function App() {
   const [movieData, setMovieData] = useState([]);
   const [genreData, setGenreData] = useState([]);
+  // const [userdata, setUserData] = useState();
 
   useEffect(() => {
     const dataRetrieval = async () => {
       const { data: moviesData } = await getMovies();
-      // console.log(moviesData);
 
       const { data: genresData } = await getGenres();
-      // console.log(genresData);
+
+      const { data: userData } = await auth.getCurrentUser();
+      // console.log(userData);
 
       setMovieData(moviesData);
       setGenreData(genresData);
     };
 
     dataRetrieval();
-
   });
-
 
   return (
     <>

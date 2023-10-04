@@ -1,37 +1,23 @@
 import React from "react";
 import MovieSlider from "./MovieSlider";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+import "../componentStyle/categorizedMovies.css";
 
-function CategorizedMovies({ category }) {
+function CategorizedMovies({ moviesData, genresData: genres }) {
   return (
     <>
-      <div className="movie-category">
-        <h3>
-          {category} <KeyboardArrowRightIcon />
-        </h3>
-        <MovieSlider />
-      </div>
-      <div className="catMovie-divider"></div>
-      <div className="movie-category">
-        <h3>
-          {category} <KeyboardArrowRightIcon />
-        </h3>
-        <MovieSlider />
-      </div>
-      <div className="catMovie-divider"></div>
-      <div className="movie-category">
-        <h3>
-          {category} <KeyboardArrowRightIcon />
-        </h3>
-        <MovieSlider />
-      </div>
-      <div className="catMovie-divider"></div>
-      <div className="movie-category">
-        <h3>
-          {category} <KeyboardArrowRightIcon />
-        </h3>
-        <MovieSlider />
-      </div>
+      {genres.map((genre) => (
+        <div key={genre._id}>
+          {" "}
+          <div className="movie-category">
+            <h3>
+              {genre.name} <KeyboardArrowRightIcon />
+            </h3>
+            <MovieSlider moviesData={moviesData} />
+          </div>
+          <div className="catMovie-divider"></div>
+        </div>
+      ))}
     </>
   );
 }

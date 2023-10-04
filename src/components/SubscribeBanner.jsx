@@ -1,12 +1,14 @@
 import React from "react";
-import PaymentIcon from "@mui/icons-material/Payment";
 import { Button } from "@mui/material";
+import { Link } from "react-router-dom";
+import PaymentIcon from "@mui/icons-material/Payment";
+import "../componentStyle/form.css";
 
 function SubscribeBanner() {
   return (
     <div className="sub-banner">
       <p>Top movies. Top Series. Only on VIDLY.</p>
-      <Button variant="contained">
+      <Button component={Link} to="/register" variant="contained">
         <PaymentIcon sx={{ mr: 1 }} />
         Join for Free
       </Button>

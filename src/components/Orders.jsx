@@ -9,6 +9,7 @@ import {
   Paper,
 } from "@mui/material";
 import "../componentStyle/ordersTable.css";
+import SmoothScrollingToTop from "./moviesTableUtil/SmoothScrollingToTop";
 
 function createData(name, begin, end, days, rate, amt) {
   return { name, begin, end, days, rate, amt };
@@ -23,6 +24,8 @@ const rows = [
 ];
 
 function Orders() {
+  SmoothScrollingToTop();
+
   return (
     <div className="order-table-container">
       <TableContainer component={Paper} sx={{ width: "95%" }}>

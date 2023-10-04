@@ -3,28 +3,37 @@ import Joi from "joi-browser";
 import Box from "@mui/material/Box";
 import { Button } from "@mui/material";
 import Input from "./Input";
-// import { register } from "../services/userService";
-// import auth from "../services/authService";
+import { register } from "../services/userService";
+import auth from "../services/authService";
+import "../componentStyle/form.css";
+import SmoothScrollingToTop from "./moviesTableUtil/SmoothScrollingToTop";
 
 function RegisterForm() {
   const [account, setAccount] = useState({
     username: "",
     password: "",
     name: "",
+    contact: "",
   });
+
   const [error, setError] = useState({
     usernameError: false,
     passwordError: false,
     nameError: false,
+    contactError: false,
     usernameErrorMessage: "",
     passwordErrorMessage: "",
     nameErrorMessage: "",
+    contactErrorMessage: "",
   });
+
+  SmoothScrollingToTop();
 
   const schema = {
     username: Joi.string().email().required().label("Username"),
     password: Joi.string().min(8).required().label("Password"),
     name: Joi.string().min(5).required().label("Name"),
+    contact: Joi.string().min(3).required().label("Contact"),
   };
 
   const validate = () => {
@@ -80,8 +89,8 @@ function RegisterForm() {
     if (anyError) return;
 
     try {
-      //   const response = await register(account);
-      //   auth.loginWithJwt(response.headers["x-auth-token"]);
+      const response = await register(account);
+      auth.loginWithJwt(response.headers["x-auth-token"]);
       window.location = "/";
     } catch (ex) {
       if (ex.response && ex.response.status === 400) {
@@ -94,39 +103,59 @@ function RegisterForm() {
   };
 
   return (
-    <form autoComplete="off" onSubmit={handleSubmit}>
-      <h1>Registration Form</h1>
-      <Box>
-        <Input
-          name="username"
-          label="UserName"
-          onChange={handleInputChange}
-          value={account.username}
-          error={error.usernameError}
-          errorMessage={error.usernameErrorMessage}
-        />
-        <Input
-          name="password"
-          label="Password"
-          type="password"
-          onChange={handleInputChange}
-          value={account.password}
-          error={error.passwordError}
-          errorMessage={error.passwordErrorMessage}
-        />
-        <Input
-          name="name"
-          label="Name"
-          onChange={handleInputChange}
-          value={account.name}
-          error={error.nameError}
-          errorMessage={error.nameErrorMessage}
-        />
-      </Box>
-      <Button type="submit" variant="contained" disabled={validate() !== null}>
-        Register
-      </Button>
-    </form>
+    <div className="form-background-image">
+      <div className="form-container">
+        <form
+          className="form-content"
+          autoComplete="off"
+          onSubmit={handleSubmit}
+        >
+          <h1>Registration Form</h1>
+          <Box>
+            <Input
+              name="username"
+              label="UserName"
+              onChange={handleInputChange}
+              value={account.username}
+              error={error.usernameError}
+              errorMessage={error.usernameErrorMessage}
+            />
+            <Input
+              name="password"
+              label="Password"
+              type="password"
+              onChange={handleInputChange}
+              value={account.password}
+              error={error.passwordError}
+              errorMessage={error.passwordErrorMessage}
+            />
+            <Input
+              name="name"
+              label="Name"
+              onChange={handleInputChange}
+              value={account.name}
+              error={error.nameError}
+              errorMessage={error.nameErrorMessage}
+            />
+            <Input
+              name="contact"
+              label="Contact"
+              onChange={handleInputChange}
+              value={account.contact}
+              error={error.contactError}
+              errorMessage={error.contactErrorMessage}
+            />
+          </Box>
+          <Button
+            type="submit"
+            variant="contained"
+            disabled={validate() !== null}
+          >
+            Register
+          </Button>
+        </form>
+      </div>
+    </div>
   );
 }
 

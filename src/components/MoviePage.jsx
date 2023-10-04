@@ -5,10 +5,13 @@ import AddIcon from "@mui/icons-material/Add";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import { Button } from "@mui/material";
 import "../componentStyle/moviePage.css";
+import SmoothScrollingToTop from "./moviesTableUtil/SmoothScrollingToTop";
 
 function MoviePage() {
   const location = useLocation();
   const { movieData } = location.state;
+
+  SmoothScrollingToTop();
 
   return (
     <div className="movie-page-container">
