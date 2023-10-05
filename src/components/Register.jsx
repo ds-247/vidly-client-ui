@@ -1,14 +1,16 @@
 import React, { useState } from "react";
-import Joi from "joi-browser";
-import Box from "@mui/material/Box";
-import { Button } from "@mui/material";
-import Input from "./Input";
-import { register } from "../services/userService";
+import { Redirect, useHistory, Link } from "react-router-dom";
 import auth from "../services/authService";
-import "../componentStyle/form.css";
+import Joi from "joi-browser";
+import Input from "./Input";
+import { Button, Box } from "@mui/material";
+import { register } from "../services/userService";
 import SmoothScrollingToTop from "./moviesTableUtil/SmoothScrollingToTop";
+import "../componentStyle/form.css";
 
 function RegisterForm() {
+  const history = useHistory();
+
   const [account, setAccount] = useState({
     username: "",
     password: "",
@@ -91,7 +93,9 @@ function RegisterForm() {
     try {
       const response = await register(account);
       auth.loginWithJwt(response.headers["x-auth-token"]);
-      window.location = "/";
+      const { state } = history.location;
+      const redirectingUrl = state ? `${state.from.pathname}` : "/";
+      window.location = redirectingUrl;
     } catch (ex) {
       if (ex.response && ex.response.status === 400) {
         const err = error;
@@ -103,59 +107,73 @@ function RegisterForm() {
   };
 
   return (
-    <div className="form-background-image">
-      <div className="form-container">
-        <form
-          className="form-content"
-          autoComplete="off"
-          onSubmit={handleSubmit}
-        >
-          <h1>Registration Form</h1>
-          <Box>
-            <Input
-              name="username"
-              label="UserName"
-              onChange={handleInputChange}
-              value={account.username}
-              error={error.usernameError}
-              errorMessage={error.usernameErrorMessage}
-            />
-            <Input
-              name="password"
-              label="Password"
-              type="password"
-              onChange={handleInputChange}
-              value={account.password}
-              error={error.passwordError}
-              errorMessage={error.passwordErrorMessage}
-            />
-            <Input
-              name="name"
-              label="Name"
-              onChange={handleInputChange}
-              value={account.name}
-              error={error.nameError}
-              errorMessage={error.nameErrorMessage}
-            />
-            <Input
-              name="contact"
-              label="Contact"
-              onChange={handleInputChange}
-              value={account.contact}
-              error={error.contactError}
-              errorMessage={error.contactErrorMessage}
-            />
-          </Box>
-          <Button
-            type="submit"
-            variant="contained"
-            disabled={validate() !== null}
-          >
-            Register
-          </Button>
-        </form>
-      </div>
-    </div>
+    <>
+      {auth.getCurrentUser() ? (
+        <Redirect to="/" />
+      ) : (
+        <div className="form-background-image">
+          <div className="form-container">
+            <form
+              className="form-content"
+              autoComplete="off"
+              onSubmit={handleSubmit}
+            >
+              <h1>Registration Form</h1>
+              <Box>
+                <Input
+                  name="username"
+                  label="UserName"
+                  onChange={handleInputChange}
+                  value={account.username}
+                  error={error.usernameError}
+                  errorMessage={error.usernameErrorMessage}
+                />
+                <Input
+                  name="password"
+                  label="Password"
+                  type="password"
+                  onChange={handleInputChange}
+                  value={account.password}
+                  error={error.passwordError}
+                  errorMessage={error.passwordErrorMessage}
+                />
+                <Input
+                  name="name"
+                  label="Name"
+                  onChange={handleInputChange}
+                  value={account.name}
+                  error={error.nameError}
+                  errorMessage={error.nameErrorMessage}
+                />
+                <Input
+                  name="contact"
+                  label="Contact"
+                  onChange={handleInputChange}
+                  value={account.contact}
+                  error={error.contactError}
+                  errorMessage={error.contactErrorMessage}
+                />
+              </Box>
+              <Button
+                component={Link}
+                to="/login"
+                variant="contained"
+                sx={{ marginRight: "10px" }}
+              >
+                login
+              </Button>
+              <Button
+                type="submit"
+                variant="contained"
+                disabled={validate() !== null}
+              >
+                Register
+              </Button>
+            </form>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
 

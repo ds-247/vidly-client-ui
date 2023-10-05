@@ -27,40 +27,44 @@ function Orders() {
   SmoothScrollingToTop();
 
   return (
-    <div className="order-table-container">
-      <TableContainer component={Paper} sx={{ width: "95%" }}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableHead>
-            <TableRow style={{ height: "80px" }}>
-              <TableCell># Movie Title</TableCell>
-              <TableCell align="center">Rented On</TableCell>
-              <TableCell align="center">Returned On&nbsp;(g)</TableCell>
-              <TableCell align="center">Number of Days&nbsp;(g)</TableCell>
-              <TableCell align="center">Rate&nbsp;(g)</TableCell>
-              <TableCell align="center">Amount&nbsp;(g)</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.map((row) => (
-              <TableRow
-                key={row.name}
-                style={{ height: "150px" }}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <TableCell component="th" scope="row">
-                  {row.name}
-                </TableCell>
-                <TableCell align="center">{row.begin}</TableCell>
-                <TableCell align="center">{row.end}</TableCell>
-                <TableCell align="center">{row.days}</TableCell>
-                <TableCell align="center">{row.rate}</TableCell>
-                <TableCell align="center">{row.amt}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </div>
+    <>
+      {
+        <div className="order-table-container">
+          <TableContainer component={Paper} sx={{ width: "95%" }}>
+            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+              <TableHead>
+                <TableRow style={{ height: "80px" }}>
+                  <TableCell># Movie Title</TableCell>
+                  <TableCell align="center">Rented On</TableCell>
+                  <TableCell align="center">Returned On&nbsp;(g)</TableCell>
+                  <TableCell align="center">Number of Days&nbsp;(g)</TableCell>
+                  <TableCell align="center">Rate&nbsp;(g)</TableCell>
+                  <TableCell align="center">Amount&nbsp;(g)</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {rows.map((row) => (
+                  <TableRow
+                    key={row.name}
+                    style={{ height: "150px" }}
+                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                  >
+                    <TableCell component="th" scope="row">
+                      {row.name}
+                    </TableCell>
+                    <TableCell align="center">{row.begin}</TableCell>
+                    <TableCell align="center">{row.end}</TableCell>
+                    <TableCell align="center">{row.days}</TableCell>
+                    <TableCell align="center">{row.rate}</TableCell>
+                    <TableCell align="center">{row.amt}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </div>
+      }
+    </>
   );
 }
 

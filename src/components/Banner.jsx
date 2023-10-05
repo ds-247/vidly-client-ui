@@ -3,8 +3,11 @@ import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import AddIcon from "@mui/icons-material/Add";
 import "../componentStyle/banner.css";
+import auth from "./../services/authService";
 
 function Banner() {
+  const user = auth.getCurrentUser();
+
   return (
     <div className="banner-container">
       <div className="banner-text">
@@ -22,14 +25,16 @@ function Banner() {
           </h3>
         </div>
 
-        <div className="banner-button">
-          <Link to="register">
-            <Button variant="contained">
-              <AddIcon sx={{ mr: 1 }} />
-              Join for Free
-            </Button>
-          </Link>
-        </div>
+        {!user && (
+          <div className="banner-button">
+            <Link to="register">
+              <Button variant="contained">
+                <AddIcon sx={{ mr: 1 }} />
+                Join for Free
+              </Button>
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );

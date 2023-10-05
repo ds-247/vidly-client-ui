@@ -1,14 +1,16 @@
 import React, { useState } from "react";
+import { Redirect, useHistory, Link } from "react-router-dom";
 import Joi from "joi-browser";
 import Box from "@mui/material/Box";
 import { Button } from "@mui/material";
 import Input from "./Input";
-// import auth from "../services/authService";
-// import { Redirect } from "react-router-dom";
+import auth from "../services/authService";
 import "../componentStyle/form.css";
 import SmoothScrollingToTop from "./moviesTableUtil/SmoothScrollingToTop";
 
 function Login() {
+  const history = useHistory();
+
   const [account, setAccount] = useState({ username: "", password: "" });
   const [error, setError] = useState({
     usernameError: false,
@@ -76,9 +78,10 @@ function Login() {
     if (anyError) return;
 
     try {
-      //   await auth.login(account.username, account.password);
-
-      window.location = "/";
+      await auth.login(account.username, account.password);
+      const { state } = history.location;
+      const redirectingUrl = state ? `${state.from.pathname}` : "/";
+      window.location = redirectingUrl;
     } catch (ex) {
       if (ex.response && ex.response.status === 400) {
         const err = { ...error };
@@ -91,47 +94,55 @@ function Login() {
 
   return (
     <>
-      {/* {auth.getCurrentUser() ? (
+      {auth.getCurrentUser() ? (
         <Redirect to="/" />
-      ) : ( */}
-      <div className="form-background-image">
-        <div className="form-container">
-          <form
-            className="form-content"
-            autoComplete="off"
-            onSubmit={handleSubmit}
-          >
-            <h1>Login Form</h1>
-            <Box>
-              <Input
-                name="username"
-                label="UserName"
-                onChange={handleInputChange}
-                value={account.username}
-                error={error.usernameError}
-                errorMessage={error.usernameErrorMessage}
-              />
-              <Input
-                name="password"
-                label="Password"
-                type="password"
-                onChange={handleInputChange}
-                value={account.password}
-                error={error.passwordError}
-                errorMessage={error.passwordErrorMessage}
-              />
-            </Box>
-            <Button
-              type="submit"
-              variant="contained"
-              disabled={validate() !== null}
+      ) : (
+        <div className="form-background-image">
+          <div className="form-container">
+            <form
+              className="form-content"
+              autoComplete="off"
+              onSubmit={handleSubmit}
             >
-              LogIn
-            </Button>
-          </form>
+              <h1>Login Form</h1>
+              <Box>
+                <Input
+                  name="username"
+                  label="UserName"
+                  onChange={handleInputChange}
+                  value={account.username}
+                  error={error.usernameError}
+                  errorMessage={error.usernameErrorMessage}
+                />
+                <Input
+                  name="password"
+                  label="Password"
+                  type="password"
+                  onChange={handleInputChange}
+                  value={account.password}
+                  error={error.passwordError}
+                  errorMessage={error.passwordErrorMessage}
+                />
+              </Box>
+              <Button
+                type="submit"
+                variant="contained"
+                disabled={validate() !== null}
+              >
+                LogIn
+              </Button>
+              <Button
+                component={Link}
+                to="/register"
+                variant="contained"
+                sx={{marginLeft:"10px"}}
+              >
+                register
+              </Button>
+            </form>
+          </div>
         </div>
-      </div>
-      {/* )} */}
+      )}
     </>
   );
 }

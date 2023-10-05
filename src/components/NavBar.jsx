@@ -15,16 +15,16 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import CustomIcon from "../assets/VD icon (3).jpg";
 import "../componentStyle/navbar.css";
-
-const user = false;
+import auth from "./../services/authService";
 
 function NavBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const user = auth.getCurrentUser();
 
   const pages = [
     { label: "Home", to: "/home" },
     { label: "All Movies", to: "/movies" },
-    { label: "Orders", to: "/orders" },
+    { label: "Orders", to: "/orders", condition: user },
     { label: "Login", to: "/login", condition: !user },
     { label: "Register", to: "/register", condition: !user },
   ];
@@ -113,7 +113,7 @@ function NavBar() {
               ))}
             </Menu>
           </Box>
-          {/* <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} /> */}
+
           <Typography
             variant="h5"
             noWrap
@@ -133,21 +133,23 @@ function NavBar() {
             VIDLY
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((link, index) => (
-              <NavLink
-                key={index}
-                className="nav-link"
-                aria-current="page"
-                to={link.to}
-              >
-                <Button
-                  onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: "white", display: "block" }}
+            {pages.map((link, index) =>
+              link?.condition === undefined || link.condition ? (
+                <NavLink
+                  key={index}
+                  className="nav-link"
+                  aria-current="page"
+                  to={link.to}
                 >
-                  {link.label}
-                </Button>
-              </NavLink>
-            ))}
+                  <Button
+                    onClick={handleCloseNavMenu}
+                    sx={{ my: 2, color: "white", display: "block" }}
+                  >
+                    {link.label}
+                  </Button>
+                </NavLink>
+              ) : null
+            )}
           </Box>
           {user && <UserOptions user={user} settings={settings} />}
         </Toolbar>

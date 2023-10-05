@@ -21,16 +21,16 @@ export async function login(email, password) {
   }
 }
 
+export async function logout() {
+  localStorage.removeItem("token");
+}
+
 export function loginWithJwt(token) {
   localStorage.setItem("token", token);
 }
 
 export function getJwt() {
   return localStorage.getItem("token");
-}
-
-export async function logout() {
-  localStorage.removeItem("token");
 }
 
 export function getCurrentUser() {

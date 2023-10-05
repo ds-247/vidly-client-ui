@@ -5,20 +5,20 @@ import MoviesTable from "./components/MoviesTable";
 import MoviePage from "./components/MoviePage";
 import Orders from "./components/Orders";
 import Login from "./components/Login";
+import Logout from "./components/Logout";
 import Register from "./components/Register";
 import Footer from "./components/Footer";
 import { getMovies } from "./services/movieService";
 import { getGenres } from "./services/genreService";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
-import auth from "./services/authService";
+import ProtectedRoute from "./components/moviesTableUtil/ProtecteRoute";
 
 const homePaths = ["/", "/home"];
 
 function App() {
   const [movieData, setMovieData] = useState([]);
   const [genreData, setGenreData] = useState([]);
-  // const [userdata, setUserData] = useState();
 
   useEffect(() => {
     const dataRetrieval = async () => {
@@ -26,15 +26,12 @@ function App() {
 
       const { data: genresData } = await getGenres();
 
-      const { data: userData } = await auth.getCurrentUser();
-      // console.log(userData);
-
       setMovieData(moviesData);
       setGenreData(genresData);
     };
 
     dataRetrieval();
-  });
+  } ,[]);
 
   return (
     <>
@@ -42,11 +39,14 @@ function App() {
         <NavBar />
         <Switch>
           <Route exact path={homePaths}>
-            <Home moviesData={movieData} genresData={genreData} />
+            <Home
+              moviesData={movieData}
+              genresData={genreData}
+            />
           </Route>
-          <Route exact path="/orders">
+          <ProtectedRoute exact path="/orders">
             <Orders />
-          </Route>
+          </ProtectedRoute>
           <Route exact path="/movies">
             <MoviesTable moviesData={movieData} />
           </Route>
@@ -55,6 +55,9 @@ function App() {
           </Route>
           <Route exact path="/login">
             <Login />
+          </Route>
+          <Route exact path="/logout">
+            <Logout />
           </Route>
           <Route exact path="/register">
             <Register />

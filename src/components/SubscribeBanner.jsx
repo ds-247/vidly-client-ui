@@ -10,7 +10,7 @@ function SubscribeBanner() {
       <p>Top movies. Top Series. Only on VIDLY.</p>
       <Button component={Link} to="/register" variant="contained">
         <PaymentIcon sx={{ mr: 1 }} />
-        Join for Free
+        Subscribe
       </Button>
     </div>
   );
