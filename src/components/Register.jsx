@@ -121,6 +121,7 @@ function RegisterForm() {
               <h1>Registration Form</h1>
               <Box>
                 <Input
+                  autofocus={true}
                   name="username"
                   label="UserName"
                   onChange={handleInputChange}
@@ -155,19 +156,19 @@ function RegisterForm() {
                 />
               </Box>
               <Button
-                component={Link}
-                to="/login"
-                variant="contained"
-                sx={{ marginRight: "10px" }}
-              >
-                login
-              </Button>
-              <Button
                 type="submit"
                 variant="contained"
                 disabled={validate() !== null}
               >
                 Register
+              </Button>
+              <Button
+                component={Link}
+                to="/login"
+                variant="contained"
+                sx={{ marginLeft: "10px" }}
+              >
+                login
               </Button>
             </form>
           </div>

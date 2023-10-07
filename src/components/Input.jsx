@@ -1,8 +1,18 @@
 import TextField from "@mui/material/TextField";
 
-function Input({ label, name, onChange, value, type, error, errorMessage }) {
+function Input({
+  autofocus,
+  label,
+  name,
+  onChange,
+  value,
+  type,
+  error,
+  errorMessage,
+}) {
   return (
     <TextField
+      autoFocus={autofocus}
       autoComplete=""
       error={error}
       helperText={error && errorMessage}

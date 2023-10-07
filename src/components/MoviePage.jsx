@@ -1,17 +1,31 @@
 import React from "react";
-import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-import { useLocation } from "react-router-dom";
-import AddIcon from "@mui/icons-material/Add";
-import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
+import { rent } from "../services/rentalService";
+import { useHistory, useLocation } from "react-router-dom";
 import { Button } from "@mui/material";
-import "../componentStyle/moviePage.css";
+import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import AddIcon from "@mui/icons-material/Add";
+import auth from "./../services/authService";
+import MoviePopUp from "./MoviePopUp";
 import SmoothScrollingToTop from "./moviesTableUtil/SmoothScrollingToTop";
+import "../componentStyle/moviePage.css";
 
 function MoviePage() {
+  const history = useHistory(); // Initialize the history object
   const location = useLocation();
   const { movieData } = location.state;
 
   SmoothScrollingToTop();
+
+  const handleRental = async () => {
+    // can't use redirect (client side rendering with in the function directly for that use this ...)
+    const user = auth.getCurrentUser();
+
+    if (!user) {
+      history.push("/login");
+    } else {
+      await rent(movieData);
+    }
+  };
 
   return (
     <div className="movie-page-container">
@@ -28,10 +42,7 @@ function MoviePage() {
             <AddIcon sx={{ mr: 1 }} />
             Add To List
           </Button>
-          <Button variant="contained" sx={{ width: " 200px", mb: 2 }}>
-            <CurrencyRupeeIcon sx={{ mr: 1 }} />
-            Rent
-          </Button>
+          <MoviePopUp onRental={handleRental} />
         </div>
         <div className="movie-discription">
           <p>

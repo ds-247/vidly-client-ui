@@ -1,0 +1,19 @@
+/* MovieDivider.css */
+
+.movie-divider {
+  display: flex;
+  align-items: center;
+  margin: 55px 0; /* Adjust the margin as needed */
+}
+
+.divider-line {
+  flex-grow: 1;
+  height: 1px;
+  background-color: #ccc; /* Adjust the line color */
+}
+
+.divider-text {
+  margin: 0 10px; /* Adjust the margin as needed */
+  font-weight: bold;
+  color: grey;
+}

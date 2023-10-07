@@ -107,6 +107,7 @@ function Login() {
               <h1>Login Form</h1>
               <Box>
                 <Input
+                  autofocus={true}
                   name="username"
                   label="UserName"
                   onChange={handleInputChange}
@@ -135,7 +136,7 @@ function Login() {
                 component={Link}
                 to="/register"
                 variant="contained"
-                sx={{marginLeft:"10px"}}
+                sx={{ marginLeft: "10px" }}
               >
                 register
               </Button>

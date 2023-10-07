@@ -10,6 +10,6 @@ export async function register(user) {
   });
 }
 
-export async function getUsers() {
-  return http.get(apiEndPoint);
+export async function getUser() {
+  return http.get(apiEndPoint + "/me");
 }

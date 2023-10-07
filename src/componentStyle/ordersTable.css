@@ -6,6 +6,9 @@
   width: 100%;
 }
 
-.order-table-container :first-child {
-  margin: auto;
+.order-table-container thead th {
+  font-weight: 900;
+  font-size: 19px;
+  font-family: McLaren;
+  color: grey;
 }
