@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from "react";
+import {
+  getCurRentals,
+  getPrevRentals,
+  returnMovie,
+} from "../services/rentalService";
+import SmoothScrollingToTop from "./moviesTableUtil/SmoothScrollingToTop";
+import Confirmation from "./Confirmation";
 import NoData from "./NoData";
 import CTable from "./Table/CTable";
-import SmoothScrollingToTop from "./moviesTableUtil/SmoothScrollingToTop";
-import { getCurRentals, getPrevRentals } from "../services/rentalService";
-import "../componentStyle/ordersTable.css";
 import MovieDivider from "./MovieDivider";
+import "../componentStyle/ordersTable.css";
 
 function Orders() {
   const [currentRentals, setCurrentRentals] = useState([]);
@@ -15,7 +20,7 @@ function Orders() {
       try {
         const { data: curRentalData } = await getCurRentals();
         const { data: prevRentalData } = await getPrevRentals();
-
+        console.log(prevRentalData);
         setCurrentRentals(curRentalData);
         setOldRentals(prevRentalData);
       } catch (error) {
@@ -28,19 +33,35 @@ function Orders() {
 
   SmoothScrollingToTop();
 
+  const handleReturn = async (rentalData) => {
+    console.log("returned", rentalData);
+    await returnMovie(rentalData);
+  };
+
   const oldRentalHeader = [
-    { label: "Name", pathName: "title" },
+    { label: "Name", pathName: "movieTitle" },
     { label: "Rented On", pathName: "rentedOn" },
     { label: "Returned On", pathName: "returnedOn" },
-    { label: "Days rented" },
+    { label: "Days rented", pathName: "duration" },
     { label: "Rate", pathName: "rate" },
-    { label: "Amount (₹)" },
+    { label: "Amount (₹)", pathName: "rentalFee" },
   ];
 
   const curRentalHeader = [
     { label: "Name", pathName: "movieTitle" },
     { label: "Rented On", pathName: "rentedOn" },
     { label: "Rate", pathName: "rate" },
+    {
+      component: (rentalData) => (
+        <Confirmation
+          label={"Return"}
+          title={"movieTitle"}
+          rate={"rate"}
+          movie={rentalData}
+          onClick={handleReturn}
+        />
+      ),
+    },
   ];
 
   return (

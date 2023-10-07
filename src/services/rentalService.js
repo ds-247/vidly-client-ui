@@ -11,9 +11,27 @@ export async function getCurRentals() {
   return response;
 }
 
+export async function returnMovie(rental) {
+  try {
+    const response = await http.put(`${apiEndPoint}/return/${rental.movieId}`);
+
+    // Check the response status code
+    if (response.status === 200) {
+      console.log("Movie returned successfully.");
+    } else {
+      console.error("Unexpected response status code:", response.status);
+    }
+  } catch (error) {
+    if (error.response && error.response.status === 400) {
+      console.log("Movie is already returned.");
+    } else {
+      console.error("Error returning movie:", error.message);
+    }
+  }
+}
+
 export async function rent(movie) {
   try {
-    // Your Axios request to rent the movie
     const response = await http.put(`${apiEndPoint}/rent/${movie._id}`);
 
     // Check the response status code

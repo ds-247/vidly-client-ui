@@ -5,7 +5,7 @@ import { Button } from "@mui/material";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import AddIcon from "@mui/icons-material/Add";
 import auth from "./../services/authService";
-import MoviePopUp from "./MoviePopUp";
+import Confirmation from "./Confirmation";
 import SmoothScrollingToTop from "./moviesTableUtil/SmoothScrollingToTop";
 import "../componentStyle/moviePage.css";
 
@@ -42,13 +42,19 @@ function MoviePage() {
             <AddIcon sx={{ mr: 1 }} />
             Add To List
           </Button>
-          <MoviePopUp onRental={handleRental} />
+          <Confirmation
+            label={"Rent"}
+            title={"title"}
+            rate={"dailyRentalRate"}
+            movie={movieData}
+            onClick={handleRental}
+          />
         </div>
         <div className="movie-discription">
           <p>
-            The Dark Knight" (2008) follows Batman's battle against the Joker, a
-            chaotic criminal mastermind. Ledger's Joker challenges Batman's
-            morals in a dark and iconic superhero film.
+            {movieData.title} -- follows strong man's battle against the enemy,
+            a chaotic mastermind. Ledger's enemy challenges strong man's morals
+            in a dark and iconic exciting film.
           </p>
         </div>
       </div>

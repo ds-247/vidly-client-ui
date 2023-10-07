@@ -7,7 +7,9 @@ const CTableBody = ({ header, data }) => {
       {data.map((d, index) => (
         <TableRow key={index}>
           {header.map((h, ind) => (
-            <TableCell key={ind}>{d[h.pathName]}</TableCell>
+            <TableCell key={ind}>
+              {h.component ? h.component(d) : d[h.pathName]}
+            </TableCell>
           ))}
         </TableRow>
       ))}

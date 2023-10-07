@@ -9,10 +9,11 @@ import {
   Button,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import AirIcon from "@mui/icons-material/Air";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import "../componentStyle/moviePopup.css";
 
-export default function MoviePopUp({ onRental }) {
+export default function Confirmation({ label, title, rate, movie, onClick }) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -24,14 +25,22 @@ export default function MoviePopUp({ onRental }) {
 
   return (
     <div>
-      <Button
-        onClick={handleClickOpen}
-        variant="contained"
-        sx={{ width: "200px", mb: 2 }}
-      >
-        <CurrencyRupeeIcon sx={{ mr: 1 }} />
-        Rent
-      </Button>
+      {label === "Rent" && (
+        <Button
+          onClick={handleClickOpen}
+          variant="contained"
+          sx={{ width: "200px", mb: 2 }}
+        >
+          <CurrencyRupeeIcon sx={{ mr: 1 }} />
+          {label}
+        </Button>
+      )}
+      {label === "Return" && (
+        <Button onClick={handleClickOpen} variant="contained" color="success">
+          <AirIcon sx={{ mr: 1 }} />
+          {label}
+        </Button>
+      )}
       <Dialog
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
@@ -39,7 +48,7 @@ export default function MoviePopUp({ onRental }) {
         className="MoviePopUp-container"
       >
         <DialogTitle id="customized-dialog-title" className="MoviePopUp-title">
-          Rental Confirmation
+          {label} Confirmation
           <IconButton
             aria-label="close"
             onClick={handleClose}
@@ -54,18 +63,20 @@ export default function MoviePopUp({ onRental }) {
           </IconButton>
         </DialogTitle>
         <DialogContent dividers className="MoviePopUp-content">
-          <Typography gutterBottom>Movie Name : Batman</Typography>
-          <Typography gutterBottom>Daily Rental Rate : 32</Typography>
+          <Typography gutterBottom>Movie Name : {movie[title]}</Typography>
+          <Typography gutterBottom>
+            Daily Rental Rate : {movie[rate]}
+          </Typography>
         </DialogContent>
         <DialogActions className="MoviePopUp-actions">
           <Button
             autoFocus
             onClick={async () => {
-              await onRental();
+              await onClick(movie);
               handleClose();
             }}
           >
-            Rent
+            {label}
           </Button>
         </DialogActions>
       </Dialog>

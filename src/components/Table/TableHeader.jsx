@@ -5,8 +5,8 @@ const TableHeader = ({ tableHead: data }) => {
   return (
     <TableHead>
       <TableRow>
-        {data.map((d) => (
-          <TableCell key={d.label}>{d.label}</TableCell>
+        {data.map((d, index) => (
+          <TableCell key={index}>{d.label}</TableCell>
         ))}
       </TableRow>
     </TableHead>
