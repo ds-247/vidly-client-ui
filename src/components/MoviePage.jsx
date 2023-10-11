@@ -16,14 +16,14 @@ function MoviePage() {
 
   SmoothScrollingToTop();
 
-  const handleRental = async () => {
+  const handleRental = () => {
     // can't use redirect (client side rendering with in the function directly for that use this ...)
     const user = auth.getCurrentUser();
 
     if (!user) {
       history.push("/login");
     } else {
-      await rent(movieData);
+      rent(movieData);
     }
   };
 

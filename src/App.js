@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { ToastContainer } from "react-toastify";
 import NavBar from "./components/NavBar";
 import Home from "./components/Home";
 import MoviesTable from "./components/MoviesTable";
@@ -11,8 +12,9 @@ import Footer from "./components/Footer";
 import { getMovies } from "./services/movieService";
 import { getGenres } from "./services/genreService";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import "./App.css";
 import ProtectedRoute from "./components/moviesTableUtil/ProtecteRoute";
+import "react-toastify/dist/ReactToastify.css";
+import "./App.css";
 
 const homePaths = ["/", "/home"];
 
@@ -31,7 +33,7 @@ function App() {
     };
 
     dataRetrieval();
-  } ,[]);
+  }, []);
 
   return (
     <>
@@ -39,10 +41,7 @@ function App() {
         <NavBar />
         <Switch>
           <Route exact path={homePaths}>
-            <Home
-              moviesData={movieData}
-              genresData={genreData}
-            />
+            <Home moviesData={movieData} genresData={genreData} />
           </Route>
           <ProtectedRoute exact path="/orders">
             <Orders />
@@ -63,6 +62,7 @@ function App() {
             <Register />
           </Route>
         </Switch>
+        <ToastContainer />
         <Footer />
       </Router>
     </>

@@ -20,7 +20,6 @@ function Orders() {
       try {
         const { data: curRentalData } = await getCurRentals();
         const { data: prevRentalData } = await getPrevRentals();
-        console.log(prevRentalData);
         setCurrentRentals(curRentalData);
         setOldRentals(prevRentalData);
       } catch (error) {
@@ -33,9 +32,14 @@ function Orders() {
 
   SmoothScrollingToTop();
 
-  const handleReturn = async (rentalData) => {
-    console.log("returned", rentalData);
-    await returnMovie(rentalData);
+  const handleReturn = (rentalData) => {
+    returnMovie(rentalData);
+    setCurrentRentals((prevVal) => {
+      const updatedData = prevVal.filter(
+        (item) => item.movieId !== rentalData.movieId
+      );
+      return updatedData;
+    });
   };
 
   const oldRentalHeader = [
