@@ -15,7 +15,6 @@ export async function getCurRentals() {
 export async function returnMovie(rental) {
   try {
     const response = await http.put(`${apiEndPoint}/return/${rental.movieId}`);
-
     // Check the response status code
     toast.success(response.data, {
       position: "bottom-left",
